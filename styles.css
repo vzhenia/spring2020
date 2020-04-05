@@ -1,3 +1,11 @@
 .container-fluid{
   padding: 43px;
 }
+
+#error{
+  color: red;
+  margin: 20px 0px;
+}
+button{
+  margin-top: 20px;
+}

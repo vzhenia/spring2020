@@ -12,33 +12,31 @@
 
     <div class="container-fluid">
       <form>
-		<div class="form-group">
-			<label for="exampleInputEmail1">Enter country</label>
-			<input type="text" class="form-control" id="country" placeholder="US, UK, FR...">
-			<small id="CountryHelp" class="form-text text-muted">Please enter country in 2-letter capitalized format</small>
-		</div>
         <div class="form-group">
-        <label for="exampleInputEmail1">Year</label>
-        <input type="text" class="form-control" id="year" placeholder="Enter year">
-        <small id="emailHelp" class="form-text text-muted">Enter year.</small>
-      </div>
+          <label for="exampleInputEmail1">Enter country</label>
+          <input type="text" class="form-control" id="country" aria-describedby="emailHelp" placeholder="US, UK, FR...">
+          <small id="emailHelp" class="form-text text-muted">Please enter country in 2-letter capitalized format</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Enter year</label>
+          <input type="number" class="form-control" id="year" placeholder="2019, 2020...">
+        </div>
         <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">not a robot</label>
+          <input type="checkbox" class="form-check-input" id="robot">
+          <label class="form-check-label" for="exampleCheck1">I am not a robot </label>
         </div>
       </form>
-
-      <button type="button" class="btn btn-primary">
-        Get holidays <span class="badge badge-light">0</span>
+      <button id="getHolidays" class="btn btn-primary">
+        GET HOLIDAYS
+        <span id="badge" class="badge badge-light">0</span>
       </button>
+      <button id="resetForm" class="btn btn-outline-secondary">
+        RESET
+      </button>
+
+      <div id="error"></div>
       <div id="result"></div>
     </div>
-
-
-
-
-
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->

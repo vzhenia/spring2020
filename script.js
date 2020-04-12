@@ -56,8 +56,11 @@ $(function(){
            $('#error').empty();
            const result = $('#result');
            result.empty()
-           holidays.map(elt => {
-             const card1 = $(`<div class="card" style="width: 18rem;">
+           holidays.map((elt, i) => {
+            const r = 255;
+            const g = Math.abs(255-(15*i));
+            const b = 200
+             const card1 = $(`<div class="card" style="background-color: rgb(${r},${g},${b});">
                 <div class="card-body">
                   <h5 class="card-title">${elt.name}</h5>
                   <p class="card-text">${elt.localName}</p>

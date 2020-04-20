@@ -57,10 +57,9 @@ $(function(){
            const result = $('#result');
            result.empty()
            holidays.map((elt, i) => {
-
-			 const r = 0;
-			 const g = Math.abs(255-10*i);
-			 const b = Math.abs(255-20*i);
+             const r = 0;
+             const g = Math.abs(210-10*i);
+             const b = Math.abs(210-20*i);
 
              const card1 = $(`<div class="card" style="background-color:rgb(${r},${g},${b});">
                 <div class="card-body">

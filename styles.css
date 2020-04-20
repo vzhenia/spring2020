@@ -11,12 +11,12 @@ button{
   margin-top: 20px;
 }
 
-#result{
-	display: flex;
-	flex-flow: row wrap;
+#result {
+  display: flex;
+  flex-flow: row wrap;
 }
-
 .card{
-	margin: 10px;
-	width: 18rem;
+  margin: 10px;
+  width: 18rem;
+  color: white;
 }

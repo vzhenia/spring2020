@@ -57,7 +57,6 @@ $(function(){
            const result = $('#result');
            result.empty()
            holidays.map((elt, i) => {
-
              const r = 0;
              const g = Math.abs(210-10*i);
              const b = Math.abs(210-20*i);

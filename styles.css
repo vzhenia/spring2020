@@ -10,19 +10,6 @@
 button{
   margin-top: 20px;
 }
-
-<<<<<<< HEAD
-
-#result{
-	display: flex;
-	flex-flow: row wrap;
-}
-
-.card{
-	margin: 10px;
-	width: 18rem;
-}
-=======
 #result {
   display: flex;
   flex-flow: row wrap;
@@ -32,4 +19,3 @@ button{
   width: 18rem;
   color: white;
 }
->>>>>>> 83382fc99837919cedc7101e8211a144cd37e5f2

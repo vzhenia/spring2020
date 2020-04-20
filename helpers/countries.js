@@ -4,6 +4,36 @@ const countries = {
     capital: "Kyiv",
     coordinates: "50.4021351,30.2518195"
   },
+  "US" :{
+    name: "The United Stats",
+    capital:"Washington, D.C.",
+    cordinates :"38.89378,-77.1546623",
+
+  },
+  "CA" :{
+    name: "Canada",
+    capital:"Ottawa",
+    cordinates :"45.2502975,-76.0804467",
+
+  },
+  "PA" :{
+    name: "Panama",
+    capital:"Panama",
+    cordinates :"8.3768031,-82.3504484"
+
+  },
+  "CU" :{
+    name: "Cuba",
+    capital:"Havana",
+    cordinates :"7.9950472,-98.5567246,4"
+
+  },
+  "DO" :{
+    name: "Dominican Republic",
+    capital:"SANTO DOMINGO",
+    cordinates :"18.4801923,-70.016921"
+
+  },
   "TN": {
     name: "Tunisia",
     capital: "Tunis",
@@ -82,27 +112,27 @@ const countries = {
     name: "Netherlands",
     capital: "Amsterdam",
     coordinates: "52.2129919,5.2793703"
-  }
+  },
   "BG": {
     name: "Bulgaria",
     capital: "Sofia",
     coordinates: "42.6953468,23.1838627"
-  }
+  },
   "BY": {
     name: "Belarus",
     capital: "Minsk",
     coordinates: "53.8845585,27.4532862"
-  }
+  },
   "HU": {
     name: "Hungary",
     capital: "Budapest",
     coordinates: "47.4811281,18.9902197"
-  }
+  },
   "GE": {
     name: "Georgia",
     capital: "Georgia",
     coordinates: "32.8093513,-84.972557"
-  }
+  },
   "RO": {
     name: "Romania",
     capital: "Bucharest",

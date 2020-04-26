@@ -59,12 +59,13 @@ $(function(){
            const info = $('#info');
            info.empty();
            const languages = Object.values(country.languages).map(lang => " "+lang);
-           const continent = '';
+           const continent = country.continent.name;
            const currency = '';
-           const pop = '';
-           const area = '';
            const tz = country.timezone.timezone;
-           const time = '';
+           const area = country.area_size;
+		       const x = country.population/1000000
+		       const mathe = Math.round(x);
+           const time = country.timezone.time;
 
            const countryCard = $(`<div class="card country-info">
              <div class="card-body">
@@ -75,7 +76,7 @@ $(function(){
              <ul class="list-group list-group-flush">
              <li class="list-group-item">Languages: ${languages}</li>
              <li class="list-group-item">Currency: ${currency}</li>
-             <li class="list-group-item">Population, mln: ${pop}</li>
+             <li class="list-group-item">Population, mln: ${mathe}</li>
              <li class="list-group-item">Area size: ${area}</li>
              <li class="list-group-item">Timezone: ${tz}</li>
              <li class="list-group-item">Current time: ${time}</li>

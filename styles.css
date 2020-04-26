@@ -6,10 +6,10 @@
   color: red;
   margin: 20px 0px;
 }
+
 button{
   margin-top: 20px;
 }
-
 #result {
   display: flex;
   flex-flow: row wrap;
@@ -18,4 +18,9 @@ button{
   margin: 10px;
   width: 18rem;
   color: white;
+}
+
+.country-info {
+  color: #212529;
+  width: 100%;
 }

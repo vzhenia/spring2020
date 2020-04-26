@@ -62,7 +62,7 @@ $(function(){
            const continent = '';
            const currency = '';
            const pop = '';
-           const area = '';
+           const area = country.area_size;
            const tz = '';
            const time = '';
 

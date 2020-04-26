@@ -4,29 +4,29 @@ const countries = {
     capital: "Kyiv",
     coordinates: "50.4021351,30.2518195"
   },
-  "CN": {
-    name:"China",
-    capital: "Beijing",
-    coordinates: "39.9385466,116.1172733"
+  "AR": {
+    name: "Argentina",
+    capital: "Boenos Aires",
+    coordinates: "-34.8059623,-58.1813086"
   },
-  "ID": {
-    name:"Indonesia",
-    capital: "Jakarta",
-    coordinates: "-1.8785136,78.0556148"
+  "BR": {
+    name: "Brazil",
+    capital: "Rio de Janeiro",
+    coordinates: "-22.9138851,-43.7261746"
   },
-  "JP": {
-    name:"Japan",
-    capital: "Tokyo",
-    coordinates: "31.681995,120.3034471"
+  "CL": {
+    name: "Chili",
+    capital: "Santiago",
+    coordinates: "-33.4724728,-70.910019"
   },
-  "NZ": {
-    name:"New Zealand",
-    capital: "Wellington",
-    coordinates: "-39.3846249,157.3172296"
+  "EC": {
+    name: "	Ecuador",
+    capital: "Quito",
+    coordinates: "-0.1865938,-78.570625"
   },
-  "AU": {
-    name:"Australia",
-    capital: "Canberra",
-    coordinates: "-21.1895625,95.4746877"
+  "MX": {
+    name: "	Mexico",
+    capital: "Mexico City",
+    coordinates: "19.390519,-99.4238064"
   }
 }

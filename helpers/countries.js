@@ -4,16 +4,40 @@ const countries = {
     capital: "Kyiv",
     coordinates: "50.4021351,30.2518195"
   },
+  "AR": {
+    name: "Argentina",
+    capital: "Boenos Aires",
+    coordinates: "-34.8059623,-58.1813086"
+  },
+  "BR": {
+    name: "Brazil",
+    capital: "Rio de Janeiro",
+    coordinates: "-22.9138851,-43.7261746"
+  },
+  "CL": {
+    name: "Chili",
+    capital: "Santiago",
+    coordinates: "-33.4724728,-70.910019"
+  },
+  "EC": {
+    name: "	Ecuador",
+    capital: "Quito",
+    coordinates: "-0.1865938,-78.570625"
+  },
+  "MX": {
+    name: "	Mexico",
+    capital: "Mexico City",
+    coordinates: "19.390519,-99.4238064"
+  },
   "US" :{
     name: "The United Stats",
     capital:"Washington, D.C.",
-    cordinates :"38.89378,-77.1546623",
-
+    cordinates :"38.89378,-77.1546623"
   },
   "CA" :{
     name: "Canada",
     capital:"Ottawa",
-    cordinates :"45.2502975,-76.0804467",
+    cordinates :"45.2502975,-76.0804467"
 
   },
   "PA" :{
@@ -25,7 +49,7 @@ const countries = {
   "CU" :{
     name: "Cuba",
     capital:"Havana",
-    cordinates :"7.9950472,-98.5567246,4"
+    cordinates :"7.9950472,-98.5567246"
 
   },
   "DO" :{

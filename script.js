@@ -63,7 +63,7 @@ $(function(){
            const currency = '';
            const pop = '';
            const area = '';
-           const tz = '';
+           const tz = country.timezone.timezone;
            const time = '';
 
            const countryCard = $(`<div class="card country-info">

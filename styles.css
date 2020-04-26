@@ -9,7 +9,6 @@
 button{
   margin-top: 20px;
 }
-
 #result {
   display: flex;
   flex-flow: row wrap;

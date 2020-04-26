@@ -64,7 +64,7 @@ $(function(){
            const pop = '';
            const area = '';
            const tz = '';
-           const time = '';
+           const time = country.timezone.time ;
 
            const countryCard = $(`<div class="card country-info">
              <div class="card-body">

@@ -60,7 +60,7 @@ $(function(){
            info.empty();
            const languages = Object.values(country.languages).map(lang => " "+lang);
            const continent = country.continent.name;
-           const currency = '';
+           const currency = country.currency.name ;
            const tz = country.timezone.timezone;
            const area = country.area_size;
 		       const x = country.population/1000000

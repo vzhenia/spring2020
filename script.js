@@ -61,12 +61,11 @@ $(function(){
            const languages = Object.values(country.languages).map(lang => " "+lang);
            const continent = country.continent.name;
            const currency = '';
+           const tz = country.timezone.timezone;
            const area = country.area_size;
 		       const x = country.population/1000000
 		       const mathe = Math.round(x);
-
-           const tz = '';
-           const time = country.timezone.time ;
+           const time = country.timezone.time;
 
            const countryCard = $(`<div class="card country-info">
              <div class="card-body">

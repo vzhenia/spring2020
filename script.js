@@ -61,9 +61,10 @@ $(function(){
            const languages = Object.values(country.languages).map(lang => " "+lang);
            const continent = '';
            const currency = '';
-		   const x = country.population/1000000
-		   const mathe = Math.round(x);
-           const area = '';
+           const area = country.area_size;
+		       const x = country.population/1000000
+		       const mathe = Math.round(x);
+
            const tz = '';
            const time = country.timezone.time ;
 

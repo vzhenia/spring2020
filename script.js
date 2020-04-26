@@ -59,7 +59,7 @@ $(function(){
            const info = $('#info');
            info.empty();
            const languages = Object.values(country.languages).map(lang => " "+lang);
-           const continent = '';
+           const continent = country.continent.name;
            const currency = '';
            const area = country.area_size;
 		       const x = country.population/1000000

@@ -1,125 +1,177 @@
 $(function(){
 
-  let error = '';
+  // grabbing countries for dropdown
+  $.ajax({
+     url: `https://countries-cities.p.rapidapi.com/location/country/list`,
+     type: "GET",
+     beforeSend: function(xhr){
+       xhr.setRequestHeader("x-rapidapi-host", "countries-cities.p.rapidapi.com");
+       xhr.setRequestHeader("x-rapidapi-key",  token);
+       xhr.setRequestHeader("accepts", "json");
+     },
+     success: function(data){
+       console.log(data.countries)
+       const countries = data.countries;
+       const countryKeys = Object.keys(countries);
 
-  $('#resetForm').on('click', function(){
-    console.log('reset')
-    $('#result').empty();
-    $('#info').empty();
-    $('#country').val('');
-    $('#year').val('');
-    $('#badge').text('0');
-    $('#error').text('');
-    $("#robot").prop("checked", false)
-  })
+       const select = document.getElementById("countrySelect");
+       const o1 = document.createElement("option");
+       o1.innerText = "Select a country please";
+       o1.setAttribute("value", '');
+       select.appendChild(o1);
 
-  $('#getHolidays').on('click', function(){
+       for (let i=0; i<countryKeys.length; i++) {
+          const o = document.createElement("option");
+          o.setAttribute("value", countryKeys[i]);
+          o.innerText = countries[countryKeys[i]];
+          select.appendChild(o)
+        }
 
-    function showError(err){
-      $('#result').empty();
-      $('#info').empty();
-      $('#badge').text('0');
-      $('#error').text(err);
-      setTimeout(function(){
-         error = ""
-      }, 1000);
-    }
+        // handling the rest of the form
+        let error = '';
 
-    let country = $('#country').val();
-    if (country.length !== 2) {
-      error = "Country should have 2 letters";
-      showError(error);
-    } else {
-      country = country.toUpperCase();
-    }
+        $('#resetForm').on('click', function(){
+          console.log('reset')
+          $('#result').empty();
+          $('#info').empty();
+          // $('#country').val('');
+          $('#year').val('');
+          $('#badge').text('0');
+          $('#error').text('');
+          $("#robot").prop("checked", false)
 
-    const year = $('#year').val();
-    if (year.toString().length !== 4) {
-      error = "Year should have 4 numbers";
-      showError(error);
-    }
+          // set default option at form reset
+          const ops = document.getElementById('countrySelect').children;
+          for (let i=0; i<ops.length; i++) {
+            if (ops[i].value == '') {
+                ops[i].selected = "selected"
+            }
+          }
+        })
 
-    const human = $("#robot").prop("checked");
-    if (!human) {
-       error = "We don't provide info to robots";
-       showError(error);
-    }
+        $('#getHolidays').on('click', function(){
 
-    if (!error) {
-      $.ajax({
-         url: `https://countries-cities.p.rapidapi.com/location/country/${country}`,
-         type: "GET",
-         beforeSend: function(xhr){
-           xhr.setRequestHeader("x-rapidapi-host", "countries-cities.p.rapidapi.com");
-           xhr.setRequestHeader("x-rapidapi-key",  token);
-           xhr.setRequestHeader("accepts", "json");
-         },
-         success: function(country){
-           console.log(country)
-           const info = $('#info');
-           info.empty();
-           const languages = Object.values(country.languages).map(lang => " "+lang);
-           const continent = country.continent.name;
-           const currency = country.currency.name ;
-           const tz = country.timezone.timezone;
-           const area = country.area_size;
-		       const x = country.population/1000000
-		       const mathe = Math.round(x);
-           const time = country.timezone.time;
+          function showError(err){
+            $('#result').empty();
+            $('#info').empty();
+            $('#badge').text('0');
+            $('#error').text(err);
+            setTimeout(function(){
+               error = ""
+            }, 1000);
+          }
 
-           const countryCard = $(`<div class="card country-info">
-             <div class="card-body">
-               <h5 class="card-title">${country.name}</h5>
-               <h6 class="card-title">Capital: ${country.capital}</h6>
-               <p class="card-text">Continent: ${continent}</p>
-             </div>
-             <ul class="list-group list-group-flush">
-             <li class="list-group-item">Languages: ${languages}</li>
-             <li class="list-group-item">Currency: ${currency}</li>
-             <li class="list-group-item">Population, mln: ${mathe}</li>
-             <li class="list-group-item">Area size: ${area}</li>
-             <li class="list-group-item">Timezone: ${tz}</li>
-             <li class="list-group-item">Current time: ${time}</li>
-             </ul>
-           </div>`)
+          let country = $('#countrySelect').val();
 
-           countryCard.appendTo(info);
-         }
-       })
+          if (country.length !== 2) {
+            error = "You have to select a country";
+            showError(error);
+          } else {
+            country = country.toUpperCase();
+          }
 
-      $.ajax({
-         url: `https://public-holiday.p.rapidapi.com/${year}/${country}`,
-         type: "GET",
-         beforeSend: function(xhr){
-           xhr.setRequestHeader("x-rapidapi-host", "public-holiday.p.rapidapi.com");
-           xhr.setRequestHeader("x-rapidapi-key",  token);
-           xhr.setRequestHeader("accepts", "json");
-         },
-         success: function(holidays){
-           $('#error').empty();
-           const result = $('#result');
-           result.empty()
-           holidays.map((elt, i) => {
-             const r = 0;
-             const g = Math.abs(210-10*i);
-             const b = Math.abs(210-20*i);
+          const year = $('#year').val();
+          if (year.toString().length !== 4) {
+            error = "Year should have 4 numbers";
+            showError(error);
+          }
 
-             const card1 = $(`<div class="card" style="background-color:rgb(${r},${g},${b});">
-                <div class="card-body">
-                  <h5 class="card-title">${elt.name}</h5>
-                  <p class="card-text">${elt.localName}</p>
-                  <a href="#" class="btn btn-outline-primary">${elt.date}</a>
-                </div>
-              </div>`)
+          const human = $("#robot").prop("checked");
+          if (!human) {
+             error = "We don't provide info to robots";
+             showError(error);
+          }
 
-             card1.appendTo(result);
-           })
-           $('#badge').text(holidays.length);
-         },
-         error: function(error){
-           showError(error.statusText)
-         }
-      });
-    }
-  })
+          if (!error) {
+            $.ajax({
+               url: `https://countries-cities.p.rapidapi.com/location/country/${country}`,
+               type: "GET",
+               beforeSend: function(xhr){
+                 xhr.setRequestHeader("x-rapidapi-host", "countries-cities.p.rapidapi.com");
+                 xhr.setRequestHeader("x-rapidapi-key",  token);
+                 xhr.setRequestHeader("accepts", "json");
+               },
+               success: function(country){
+                 console.log(country)
+                 const info = $('#info');
+                 info.empty();
+                 const languages = Object.values(country.languages).map(lang => " "+lang);
+                 const continent = country.continent.name;
+                 const currency = country.currency.name;
+                 const tz = country.timezone.timezone;
+                 const area = country.area_size;
+                 const time = country.timezone.time;
+
+                 // poplation
+      		       const x = country.population/1000000;
+      		       let population = x.toFixed(2);
+                 let popIndex = "mln";
+                 if (country.population < 100000) {
+                   population = country.population/1000;
+                   population = population.toFixed(2);
+                   popIndex = "K";
+                 }
+
+
+                 const countryCard = $(`<div class="card country-info">
+                   <div class="card-body">
+                     <h5 class="card-title">${country.name}</h5>
+                     <h6 class="card-title">Capital: ${country.capital}</h6>
+                     <p class="card-text">Continent: ${continent}</p>
+                   </div>
+                   <ul class="list-group list-group-flush">
+                   <li class="list-group-item">Languages: ${languages}</li>
+                   <li class="list-group-item">Currency: ${currency}</li>
+                   <li class="list-group-item">Population: ${population} ${popIndex}</li>
+                   <li class="list-group-item">Area size: ${area}</li>
+                   <li class="list-group-item">Timezone: ${tz}</li>
+                   <li class="list-group-item">Current time: ${time}</li>
+                   </ul>
+                 </div>`)
+
+                 countryCard.appendTo(info);
+               }
+             })
+
+            $.ajax({
+               url: `https://public-holiday.p.rapidapi.com/${year}/${country}`,
+               type: "GET",
+               beforeSend: function(xhr){
+                 xhr.setRequestHeader("x-rapidapi-host", "public-holiday.p.rapidapi.com");
+                 xhr.setRequestHeader("x-rapidapi-key",  token);
+                 xhr.setRequestHeader("accepts", "json");
+               },
+               success: function(holidays){
+                 $('#error').empty();
+                 const result = $('#result');
+                 result.empty()
+                 holidays.map((elt, i) => {
+                   const r = 0;
+                   const g = Math.abs(210-10*i);
+                   const b = Math.abs(210-20*i);
+
+                   const card1 = $(`<div class="card" style="background-color:rgb(${r},${g},${b});">
+                      <div class="card-body">
+                        <h5 class="card-title">${elt.name}</h5>
+                        <p class="card-text">${elt.localName}</p>
+                        <a href="#" class="btn btn-outline-primary">${elt.date}</a>
+                      </div>
+                    </div>`)
+
+                   card1.appendTo(result);
+                 })
+                 $('#badge').text(holidays.length);
+               },
+               error: function(error){
+                 showError(error.statusText)
+               }
+            });
+          }
+        })
+
+     }
+   })
+
+
+
 });

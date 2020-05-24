@@ -37,7 +37,6 @@ $(function(){
           $('#year').val('');
           $('#badge').text('0');
           $('#error').text('');
-          $("#robot").prop("checked", false)
           $('#form').captcha();
 
           // set default option at form reset

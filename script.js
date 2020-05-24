@@ -77,12 +77,6 @@ $(function(){
             showError(error);
           }
 
-          const human = $("#robot").prop("checked");
-          if (!human) {
-             error = "We don't provide info to robots";
-             showError(error);
-          }
-
           if(!verifyCaptcha('#form')){
   					alert('Please click the captcha!');
   				}

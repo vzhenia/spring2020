@@ -89,91 +89,118 @@ $(function(){
 
           if (!error && verifyCaptcha('#form')) {
 
-            $.ajax({
-               url: `https://countries-cities.p.rapidapi.com/location/country/${country}`,
-               type: "GET",
-               beforeSend: function(xhr){
-                 xhr.setRequestHeader("x-rapidapi-host", "countries-cities.p.rapidapi.com");
-                 xhr.setRequestHeader("x-rapidapi-key",  token);
-                 xhr.setRequestHeader("accepts", "json");
-               },
-               success: function(country){
-                 console.log(country)
-                 const info = $('#info');
-                 info.empty();
-                 const languages = Object.values(country.languages).map(lang => " "+lang);
-                 const continent = country.continent.name;
-                 const currency = country.currency.name;
-                 const tz = country.timezone.timezone;
-                 const area = country.area_size;
-                 const time = country.timezone.time;
+            let progressBar = $(`
+              <div class="row">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
+                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              `);
 
-                 // poplation
-      		       const x = country.population/1000000;
-      		       let population = x.toFixed(2);
-                 let popIndex = "mln";
-                 if (country.population < 100000) {
-                   population = country.population/1000;
-                   population = population.toFixed(2);
-                   popIndex = "K";
+            progressBar.prependTo($('body'));
+            
+            setTimeout(function () {
+              $.ajax({
+                 url: `https://countries-cities.p.rapidapi.com/location/country/${country}`,
+                 type: "GET",
+                 beforeSend: function(xhr){
+                   xhr.setRequestHeader("x-rapidapi-host", "countries-cities.p.rapidapi.com");
+                   xhr.setRequestHeader("x-rapidapi-key",  token);
+                   xhr.setRequestHeader("accepts", "json");
+                 },
+                 success: function(country){
+                   console.log(country)
+                   const info = $('#info');
+                   info.empty();
+                   const languages = Object.values(country.languages).map(lang => " "+lang);
+                   const continent = country.continent.name;
+                   const currency = country.currency.name;
+                   const tz = country.timezone.timezone;
+                   const area = country.area_size;
+                   const time = country.timezone.time;
+
+                   // poplation
+        		       const x = country.population/1000000;
+        		       let population = x.toFixed(2);
+                   let popIndex = "mln";
+                   if (country.population < 100000) {
+                     population = country.population/1000;
+                     population = population.toFixed(2);
+                     popIndex = "K";
+                   }
+
+                   const flag = flags.find(f => f.name === country.code);
+                   let internals = `<i>Flag icon is not available for ${country.name}</i>`;
+                   let direction = 'left';
+                   if (flag) {
+                     internals = `<img src=${flag.src} width="32" height="21"/>`
+                     direction = 'right';
+                   }
+
+                   const countryCard = $(`
+                     <div class="card country-info">
+                     <div class="card-body">
+                       <marquee behavior="" direction="${direction}">
+                        ${internals}
+                       </marquee>
+                       <h5 class="card-title">${country.name}</h5>
+                       <h6 class="card-title">Capital: ${country.capital}</h6>
+                       <p class="card-text">Continent: ${continent}</p>
+                     </div>
+                     <ul class="list-group list-group-flush">
+                     <li class="list-group-item">Languages: ${languages}</li>
+                     <li class="list-group-item">Currency: ${currency}</li>
+                     <li class="list-group-item">Population: ${population} ${popIndex}</li>
+                     <li class="list-group-item">Area size: ${area}</li>
+                     <li class="list-group-item">Timezone: ${tz}</li>
+                     <li class="list-group-item">Current time: ${time}</li>
+                     </ul>
+                   </div>`)
+
+                   countryCard.appendTo(info);
                  }
+               })
 
-                 const countryCard = $(`<div class="card country-info">
-                   <div class="card-body">
-                     <h5 class="card-title">${country.name}</h5>
-                     <h6 class="card-title">Capital: ${country.capital}</h6>
-                     <p class="card-text">Continent: ${continent}</p>
-                   </div>
-                   <ul class="list-group list-group-flush">
-                   <li class="list-group-item">Languages: ${languages}</li>
-                   <li class="list-group-item">Currency: ${currency}</li>
-                   <li class="list-group-item">Population: ${population} ${popIndex}</li>
-                   <li class="list-group-item">Area size: ${area}</li>
-                   <li class="list-group-item">Timezone: ${tz}</li>
-                   <li class="list-group-item">Current time: ${time}</li>
-                   </ul>
-                 </div>`)
+              $.ajax({
+                 url: `https://public-holiday.p.rapidapi.com/${year}/${country}`,
+                 type: "GET",
+                 beforeSend: function(xhr){
+                   xhr.setRequestHeader("x-rapidapi-host", "public-holiday.p.rapidapi.com");
+                   xhr.setRequestHeader("x-rapidapi-key",  token);
+                   xhr.setRequestHeader("accepts", "json");
+                 },
+                 success: function(holidays){
+                   $('#error').empty();
+                   const result = $('#result');
+                   result.empty()
+                   holidays.map((elt, i) => {
+                     const r = 0;
+                     const g = Math.abs(210-10*i);
+                     const b = Math.abs(210-20*i);
 
-                 countryCard.appendTo(info);
-               }
-             })
+                     const card1 = $(`<div class="card" style="background-color:rgb(${r},${g},${b});">
+                        <div class="card-body">
+                          <h5 class="card-title">${elt.name}</h5>
+                          <p class="card-text">${elt.localName}</p>
+                          <a href="#" class="btn btn-outline-primary">${elt.date}</a>
+                        </div>
+                      </div>`)
 
-            $.ajax({
-               url: `https://public-holiday.p.rapidapi.com/${year}/${country}`,
-               type: "GET",
-               beforeSend: function(xhr){
-                 xhr.setRequestHeader("x-rapidapi-host", "public-holiday.p.rapidapi.com");
-                 xhr.setRequestHeader("x-rapidapi-key",  token);
-                 xhr.setRequestHeader("accepts", "json");
-               },
-               success: function(holidays){
-                 $('#error').empty();
-                 const result = $('#result');
-                 result.empty()
-                 holidays.map((elt, i) => {
-                   const r = 0;
-                   const g = Math.abs(210-10*i);
-                   const b = Math.abs(210-20*i);
+                     card1.appendTo(result);
+                   })
+                   $('#badge').text(holidays.length);
+                 },
+                 error: function(error){
+                   showError(error.statusText)
+                 }
+              });
 
-                   const card1 = $(`<div class="card" style="background-color:rgb(${r},${g},${b});">
-                      <div class="card-body">
-                        <h5 class="card-title">${elt.name}</h5>
-                        <p class="card-text">${elt.localName}</p>
-                        <a href="#" class="btn btn-outline-primary">${elt.date}</a>
-                      </div>
-                    </div>`)
-
-                   card1.appendTo(result);
-                 })
-                 $('#badge').text(holidays.length);
-               },
-               error: function(error){
-                 showError(error.statusText)
-               }
-            });
+              progressBar = document.getElementsByTagName('body')[0].firstElementChild;
+              document.getElementsByTagName('body')[0].removeChild(progressBar);
+            }, 2000);
           }
         })
-
      }
    })
 });

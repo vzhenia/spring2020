@@ -95,5 +95,5 @@ button{
 
 /* Styles for loader */
 marquee {
-  width: calc(100% - 50px);
+  width: 200px;
 }

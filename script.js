@@ -10,7 +10,7 @@ $(function(){
        xhr.setRequestHeader("accepts", "json");
      },
      success: function(data){
-       console.log(data.countries)
+       //console.log(data.countries)
        const countries = data.countries;
        const countryKeys = Object.keys(countries);
 
@@ -34,11 +34,11 @@ $(function(){
           console.log('reset')
           $('#result').empty();
           $('#info').empty();
-          // $('#country').val('');
           $('#year').val('');
           $('#badge').text('0');
           $('#error').text('');
-          // $("#robot").prop("checked", false)
+          $("#robot").prop("checked", false)
+          $('#form').captcha();
 
           // set default option at form reset
           const ops = document.getElementById('countrySelect').children;
@@ -49,11 +49,12 @@ $(function(){
           }
         })
 
+        $('#form').captcha();
+
         $('#getHolidays').on('click', function(){
 
           function showError(err){
             $('#result').empty();
-            $('#info').empty();
             $('#badge').text('0');
             $('#error').text(err);
             setTimeout(function(){
@@ -82,7 +83,11 @@ $(function(){
              // showError(error);
           // }
 
-          if (!error) {
+          if(!verifyCaptcha('#form')){
+  					alert('Please click the captcha!');
+  				}
+
+          if (!error && verifyCaptcha('#form')) {
             $.ajax({
                url: `https://countries-cities.p.rapidapi.com/location/country/${country}`,
                type: "GET",
@@ -171,7 +176,4 @@ $(function(){
 
      }
    })
-
-
-
 });

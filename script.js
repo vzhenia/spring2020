@@ -37,7 +37,6 @@ $(function(){
           $('#year').val('');
           $('#badge').text('0');
           $('#error').text('');
-
           $('#form').captcha();
 
           // set default option at form reset
@@ -77,18 +76,11 @@ $(function(){
             showError(error);
           }
 
-          // const human = $("#robot").prop("checked");
-          // if (!human) {
-          //    error = "We don't provide info to robots";
-          //    showError(error);
-          // }
-
           if(!verifyCaptcha('#form')){
   					alert('Please click the captcha!');
   				}
 
           if (!error && verifyCaptcha('#form')) {
-
             $.ajax({
                url: `https://countries-cities.p.rapidapi.com/location/country/${country}`,
                type: "GET",
@@ -117,6 +109,7 @@ $(function(){
                    population = population.toFixed(2);
                    popIndex = "K";
                  }
+
 
                  const countryCard = $(`<div class="card country-info">
                    <div class="card-body">

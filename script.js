@@ -77,15 +77,12 @@ $(function(){
             showError(error);
           }
 
-<<<<<<< HEAD
-=======
           // const human = $("#robot").prop("checked");
           // if (!human) {
           //    error = "We don't provide info to robots";
           //    showError(error);
           // }
 
->>>>>>> 3a10340c01772d3f2ac3baece3b4ace9fd946063
           if(!verifyCaptcha('#form')){
   					alert('Please click the captcha!');
   				}

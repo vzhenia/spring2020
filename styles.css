@@ -80,3 +80,20 @@ button{
     stroke-dashoffset: 0;
   }
 }
+
+/* Progress bar animation */
+.progress-bar {
+  width: 100vw;
+  animation: progress 2s ease;
+}
+
+@keyframes progress {
+  0% {
+    width: calc(100vw - 99vw);
+  }
+}
+
+/* Styles for loader */
+marquee {
+  width: calc(100% - 50px);
+}

@@ -38,7 +38,7 @@ $(function(){
           $('#year').val('');
           $('#badge').text('0');
           $('#error').text('');
-          $("#robot").prop("checked", false)
+          // $("#robot").prop("checked", false)
 
           // set default option at form reset
           const ops = document.getElementById('countrySelect').children;
@@ -76,11 +76,11 @@ $(function(){
             showError(error);
           }
 
-          const human = $("#robot").prop("checked");
-          if (!human) {
-             error = "We don't provide info to robots";
-             showError(error);
-          }
+          // const human = $("#robot").prop("checked");
+          // if (!human) {
+             // error = "We don't provide info to robots";
+             // showError(error);
+          // }
 
           if (!error) {
             $.ajax({

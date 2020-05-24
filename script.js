@@ -74,7 +74,9 @@ $(function(){
           const year = $('#year').val();
           if (year.toString().length !== 4) {
             error = "Year should have 4 numbers";
-            showError(error);}
+            showError(error);
+          }
+
           if(!verifyCaptcha('#form')){
   					alert('Please click the captcha!');
   				}

@@ -82,6 +82,7 @@ $(function(){
   				}
 
           if (!error && verifyCaptcha('#form')) {
+
             $.ajax({
                url: `https://countries-cities.p.rapidapi.com/location/country/${country}`,
                type: "GET",
@@ -110,7 +111,6 @@ $(function(){
                    population = population.toFixed(2);
                    popIndex = "K";
                  }
-
 
                  const countryCard = $(`<div class="card country-info">
                    <div class="card-body">

@@ -92,7 +92,7 @@ $(function(){
               `);
 
             progressBar.prependTo($('body'));
-            
+
             setTimeout(function () {
               $.ajax({
                  url: `https://countries-cities.p.rapidapi.com/location/country/${country}`,
@@ -138,7 +138,9 @@ $(function(){
                         ${internals}
                        </marquee>
                        <h5 class="card-title">${country.name}</h5>
-                       <h6 class="card-title">Capital: ${country.capital}</h6>
+                       <h6 class="card-title">Capital:
+                       <a href="https://en.wikipedia.org/wiki/${country.capital}" target="_blank">${country.capital}</a>
+                       </h6>
                        <p class="card-text">Continent: ${continent}</p>
                      </div>
                      <ul class="list-group list-group-flush">

@@ -2,7 +2,7 @@
 $.fn.captcha = function(){
 	var captcha = this;
 	captcha.attr('captcha', false);
-	captcha.find('.captcha').html('<div class="check"> </div> <span>Click me!</span>');
+	captcha.find('.captcha').html('<div class="check"> </div> <span>Click the box!</span>');
 
 	// Verify box clicked
 	captcha.find('.captcha .check').on('click', function(){
